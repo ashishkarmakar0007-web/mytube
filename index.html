@@ -92,7 +92,7 @@
 
 <script>
   // Add your own Supabase Project URL and Publishable Key here.
-  const SUPABASE_URL = "https://pwyucodxxrbpskdzqnas.supabase.co";
+  const SUPABASE_URL = "https://pwyucodxrbpskdzqnas.supabase.co";
   const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_Yuf3QnnbAsGiqjO6Pz1wXw_UXyd5iIC";
   const VIDEO_BUCKET = "videos";
   const THUMB_BUCKET = "thumbnails";
@@ -130,7 +130,13 @@
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     if (!email || password.length < 6) return setStatus("authStatus","Enter a valid email and password of at least 6 characters.");
-    const {error} = await db.auth.signUp({email,password});
+    const {error} = await db.auth.signUp({
+  email,
+  password,
+  options: {
+    emailRedirectTo: "https://ashishkarmakar0007-web.github.io/mytube/"
+  }
+});
     setStatus("authStatus", error ? error.message : "Signup submitted. Check your email if confirmation is enabled.");
   }
   async function signIn() {
