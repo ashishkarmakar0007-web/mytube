@@ -130,13 +130,7 @@
     const email = document.getElementById("email").value.trim();
     const password = document.getElementById("password").value;
     if (!email || password.length < 6) return setStatus("authStatus","Enter a valid email and password of at least 6 characters.");
-    const {error} = await db.auth.signUp({
-  email,
-  password,
-  options: {
-    emailRedirectTo: "https://ashishkarmakar0007-web.github.io/mytube/"
-  }
-});
+    const {error} = await db.auth.signUp({email,password});
     setStatus("authStatus", error ? error.message : "Signup submitted. Check your email if confirmation is enabled.");
   }
   async function signIn() {
